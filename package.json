@@ -1,0 +1,26 @@
+{
+  "name": "starwars-emiolo",
+  "version": "1.0.0",
+  "description": "Aplicação web que faz interação com o banco de dados mongo e com a api do star wars tambem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js localhost 2000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/douglasbernardo/starwars-eMiolo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/douglasbernardo/starwars-eMiolo/issues"
+  },
+  "homepage": "https://github.com/douglasbernardo/starwars-eMiolo#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  }
+}
