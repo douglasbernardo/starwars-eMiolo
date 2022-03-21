@@ -1,8 +1,9 @@
 
 const router = require("express").Router()
 
-const Usuario = require("../controllers/UsuarioController")
+const UsuarioController = require("../controllers/UsuarioController")
 
-router.get("/teste",Usuario.teste)
+router.get("/teste",UsuarioController.teste)
+router.post("/cadastro",UsuarioController.cadastro)
 
 module.exports = router

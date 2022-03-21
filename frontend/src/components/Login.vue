@@ -1,20 +1,54 @@
 <template>
     <div>
-        <h1>Formulario de login</h1>
-        <Input label="Nome:" type="text" placeholder="Seu nome"/>
-        <Input label="Email:" type="email" placeholder="Seu e-mail"/>
-        <Input label="Senha:" type="password" placeholder="Sua senha"/>    
+        <button class="btn" @click="login()">
+            Cadastre-se
+        </button>
     </div>
 </template>
 
 
 <script>
-    import Input from "../components/Input.vue"
+    import api from "../services/api"
 
     export default {
         name:"Login",
-        components:{
-            Input
+        // data(){
+        //     return{
+        //         dados:null
+        //     }
+        // },
+        creted(){
+            this.login()
+        },
+        methods:{
+            async login(){
+               await api.post("/cadastro",{
+                    nome:"",
+                    email:"",
+                    senha:"",
+                    confirmacaoSenha:""
+                })
+            }
         }
     }
 </script>
+<style scoped>
+
+.btn{
+    color: black;
+    height: 30px;
+    background-color: #800000;
+    text-justify: inter-word;
+    border-radius: 40px 40px 40px 40px;
+    width: 200px;
+    margin-left: 12%;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .btn:hover{
+    background-color: #8B0000;
+  }
+
+</style>

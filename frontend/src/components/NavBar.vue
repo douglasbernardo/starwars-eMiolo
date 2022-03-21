@@ -4,15 +4,14 @@
       <router-link id="logo-url" to="/">
         <img id="logo" :src="logo" :alt="alt">
       </router-link>
-      <!-- <router-link to="/login">Login</router-link> -->
     </div>
   </div>
 </template>
 
 <script>
     export default {
-        name: "Navbar",
-        props: ["logo", "alt"]
+      name: "Navbar",
+      props: ["logo", "alt"]
     }
 </script>
 
@@ -31,8 +30,12 @@
     margin-left: 0;
   }
   #logo {
-    width: 45%;
-    height: 25%;
+    width: 50%;
+    height: 50%;
+    cursor:pointer;
+  }
+  img{
+    cursor: pointer;
   }
   #nav a {
     color: #fcba03;

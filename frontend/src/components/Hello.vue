@@ -3,7 +3,7 @@
     <h1>Bem vindo </h1>
     <p>
       Acesse o site para apreciar as funções do site do starwars
-      <router-link to="/cadastro">Cadastre-se</router-link>
+      <router-link to="/login">Login</router-link>
     </p>
   </div>
 </template>
