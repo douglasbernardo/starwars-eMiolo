@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div class="input-container">
             <label>
                 {{ label }}
                 <input :type="type" :name="name" :placeholder="placeholder"/>
@@ -33,4 +33,13 @@
         font-size:20px;
         border-radius:7px;
     }
+    .input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding:0;
+    text-align: center;
+    height: 30;
+    margin: 2;
+  }
 </style>

@@ -1,50 +1,77 @@
 <template>
   <div>
+      <div class="message" v-if="message">
+        {{message}}
+      </div>
     <div class="form-container">
-      <form>
+      <form @submit.prevent="cadastro" method="post" action="">
         <h1>Faça o Cadastro</h1>
-         <div class="input-container">
-          <Input type="text" name="nome" placeholder="Digite o seu nome"></Input>
-        </div>
-        <div class="input-container">
-          <Input type="text" name="email" placeholder="Digite o seu e-mail"></Input>
-        </div>
-        <div class="input-container">
-          <Input type="password" name="senha" placeholder="Digite a sua senha"></Input>
-        </div>
-         <div class="input-container">
-          <Input type="password" name="confirmacaoSenha" placeholder="Confirme a seu senha"></Input>
-        </div>
-        <Login/>
+          <Input type="text" name="nome" v-model="nome" placeholder="Digite o seu nome"/>
+          <Input type="text" name="email" v-model="email" placeholder="Digite o seu e-mail"/>
+          <Input type="password" name="senha" v-model="senha" placeholder="Digite a sua senha"/>
+          <Input type="password" name="confirmacaoSenha" v-model="confirmacaoSenha" placeholder="Confirme a seu senha"/>
+          <button type="submit">clique</button>
         <div class="icons">
           <a href="http://google.com"><img :src="logo_src[0]" :alt="app_name[0]"></a>
-            <a href="http://facebook.com"><img :src="logo_src[1]" :alt="app_name[1]"></a>
+          <a href="http://facebook.com"><img :src="logo_src[1]" :alt="app_name[1]"></a>
         </div>
         <p>Já é cadastrado? Faça o <router-link to="/login">login</router-link></p>
       </form>
+      <span>{{users}}</span>
     </div>  
   </div>
 </template>
 
 <script>
   import Input from "../components/Input.vue"
-  import Login from '../components/Login.vue'
-
+  //import Login from '../components/Login.vue'
+  import api from "../services/api"
+  
   export default {
     name:"loginForm",
     data() {
       return {
-        logo_src:[
-          "/img/google.png",
-          "/img/facebook.png"
-        ],
-        app_name:["Logo do google","Logo do Facebook"]
+        logo_src:["/img/google.png","/img/facebook.png"],
+        app_name:["Logo do google","Logo do Facebook"],
+        users:"",
+        message:""
       }
     },
     components:{
       Input,
-      Login,
-    }
+      //Login,
+    },
+    created(){
+      this.cadastro()
+      this.usuarios()
+    },
+    methods: {
+      async cadastro(event){
+       
+        const userObject = {
+          nome: event.target.nome.value,
+          email: event.target.email.value,
+          senha: event.target.senha.value,
+          confirmacaoSenha: event.target.confirmacaoSenha.value
+        }
+        this.user = userObject
+
+        try{
+            await api.post('/cadastro', userObject).then((response) => {
+              return response.data
+            })
+        }catch(e){
+          this.message = e.response.data.message
+          console.log("erro ao tentar cadastrar:"+e)
+        }
+
+      },
+      async usuarios(){
+        await api.get('/usuariosAll').then((response)=>{
+          console.log(response.data.users)
+        })
+      }
+    },
   }
 </script>
 
@@ -62,19 +89,11 @@
     margin: 20px;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
-  .input-container {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    padding:0;
-    text-align: center;
-    height: 30;
-    margin: 2;
-  }
   .form-container{
     width: 100vw;
     height: 100vh;
     display: flex;
+    position: fixed;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -93,6 +112,16 @@
     height: 25px;
     margin: 10px;
     cursor: pointer;
+  }
+
+  .message{
+    margin-top: 2%;
+    background-color:tomato;
+    height: 25%;
+    width: 25%;
+    display: flex;
+    font-size: 18px;
+    padding-top: 5px;
   }
 
 </style>

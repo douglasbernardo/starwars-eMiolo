@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="btn" @click="login()">
+        <button class="btn" @click="cadastro()">
             Cadastre-se
         </button>
     </div>
@@ -8,27 +8,27 @@
 
 
 <script>
-    import api from "../services/api"
+    //import api from "../services/api"
 
     export default {
         name:"Login",
-        // data(){
-        //     return{
-        //         dados:null
-        //     }
-        // },
+        data(){
+            return{
+                nome:null,
+                email:null,
+                senha:null,
+                confirmacaoSenha:null
+            }
+        },
         creted(){
-            this.login()
+            this.cadastro()
         },
         methods:{
-            async login(){
-               await api.post("/cadastro",{
-                    nome:"",
-                    email:"",
-                    senha:"",
-                    confirmacaoSenha:""
-                })
-            }
+            // async usuarios(){
+            //         await api.get("http://localhost:2000/usuario/usuariosAll").then((response)=>{
+            //         this.users = response
+            //     })
+            // }
         }
     }
 </script>

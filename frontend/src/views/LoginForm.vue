@@ -3,12 +3,8 @@
     <div class="form-container">
       <form action="" method="post">
         <h1>Faça o Login</h1>
-        <div class="input-container">
-          <Input type="text" placeholder="Digite o seu e-mail"></Input>
-        </div>
-        <div class="input-container">
-          <Input type="password" placeholder="Digite a sua senha"></Input>
-        </div>
+        <Input type="text" placeholder="Digite o seu e-mail"/>
+        <Input type="password" placeholder="Digite a sua senha"/>
         <button class="btn">Login</button>
         <div class="icons">
           <img :src="logo_src[0]" :alt="app_name[0]">
