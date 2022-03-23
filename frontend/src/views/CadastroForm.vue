@@ -1,16 +1,16 @@
 <template>
   <div>
       <div class="message" v-if="message">
-        {{message}}
+        <p>{{message}}</p>
       </div>
     <div class="form-container">
       <form @submit.prevent="cadastro" method="post" action="">
         <h1>Faça o Cadastro</h1>
-          <Input type="text" name="nome" v-model="nome" placeholder="Digite o seu nome"/>
-          <Input type="text" name="email" v-model="email" placeholder="Digite o seu e-mail"/>
-          <Input type="password" name="senha" v-model="senha" placeholder="Digite a sua senha"/>
-          <Input type="password" name="confirmacaoSenha" v-model="confirmacaoSenha" placeholder="Confirme a seu senha"/>
-          <button type="submit">clique</button>
+        <Input type="text" name="nome" v-model="nome" placeholder="Digite o seu nome"/>
+        <Input type="text" name="email" v-model="email" placeholder="Digite o seu e-mail"/>
+        <Input type="password" name="senha" v-model="senha" placeholder="Digite a sua senha"/>
+        <Input type="password" name="confirmacaoSenha" v-model="confirmacaoSenha" placeholder="Confirme a seu senha"/>
+        <Button text="cadastre-se"/>
         <div class="icons">
           <a href="http://google.com"><img :src="logo_src[0]" :alt="app_name[0]"></a>
           <a href="http://facebook.com"><img :src="logo_src[1]" :alt="app_name[1]"></a>
@@ -24,7 +24,7 @@
 
 <script>
   import Input from "../components/Input.vue"
-  //import Login from '../components/Login.vue'
+  import Button from '../components/Button.vue'
   import api from "../services/api"
   
   export default {
@@ -34,12 +34,12 @@
         logo_src:["/img/google.png","/img/facebook.png"],
         app_name:["Logo do google","Logo do Facebook"],
         users:"",
-        message:""
+        message: ""
       }
     },
     components:{
       Input,
-      //Login,
+      Button,
     },
     created(){
       this.cadastro()
@@ -58,10 +58,15 @@
 
         try{
             await api.post('/cadastro', userObject).then((response) => {
-              return response.data
+              console.log("Cadastrado com sucesso",response.data)
+              localStorage.setItem("token",response.data.token)
+              this.$router.push({ name: 'Home'})
             })
         }catch(e){
-          this.message = e.response.data.message
+           this.message = e.response.data.message
+          setTimeout(()=>{
+              this.message = ""
+          },3000)
           console.log("erro ao tentar cadastrar:"+e)
         }
 
@@ -100,7 +105,7 @@
     margin-top: -10%;
   }
 
-   p{
+  p{
     text-align: center;
     margin-left:30px;
   }
@@ -108,20 +113,25 @@
   a {
     color: #42b983;
   }
-  img{
+  .icons img{
     height: 25px;
     margin: 10px;
     cursor: pointer;
   }
 
   .message{
-    margin-top: 2%;
     background-color:tomato;
-    height: 25%;
-    width: 25%;
+    height: 20%;
+    width: 30%;
     display: flex;
+    border-radius: 25px;
+    margin-top:2%;
+  }
+
+  .message p{
     font-size: 18px;
-    padding-top: 5px;
+    color: white;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
 
 </style>

@@ -5,7 +5,7 @@
         <h1>Faça o Login</h1>
         <Input type="text" placeholder="Digite o seu e-mail"/>
         <Input type="password" placeholder="Digite a sua senha"/>
-        <button class="btn">Login</button>
+        <Button text="Login"/>
         <div class="icons">
           <img :src="logo_src[0]" :alt="app_name[0]">
           <img :src="logo_src[1]" :alt="app_name[1]">
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+  import Button from '../components/Button.vue'
   import Input from "../components/Input.vue"
 
   export default {
@@ -32,6 +33,7 @@
     },
     components:{
       Input,
+      Button,
     }
   }
 </script>
@@ -68,24 +70,6 @@
     align-items: center;
     margin-top: -10%;
   }
-
-  .btn{
-    color: black;
-    height: 30px;
-    background-color: #800000;
-    text-justify: inter-word;
-    border-radius: 40px 40px 40px 40px;
-    width: 200px;
-    margin-left: 12%;
-    border: none;
-    text-align: center;
-    cursor: pointer;
-  }
-
-  .btn:hover{
-    background-color: #8B0000;
-  }
-
   p{
     text-align: center;
     margin-left:30px;
@@ -94,7 +78,7 @@
   a{
     color: #42b983;
   }
-  img{
+  .icons img{
     height: 25px;
     margin: 10px;
     cursor: pointer;

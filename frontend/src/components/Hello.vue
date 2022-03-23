@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>Bem vindo </h1>
     <p>
-      Acesse o site para apreciar as funções do site do starwars
+      Faça o login para ter acesso à funções da api do starwars
       <router-link to="/login">Login</router-link>
     </p>
   </div>
