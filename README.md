@@ -11,7 +11,3 @@ Aplicação web que faz interação com o banco de dados mongo e com a api do st
 **Back-end:** Node, Express
 
 
-## Autores
-
-- [@Douglas](https://www.github.com/octokatherine)
-
