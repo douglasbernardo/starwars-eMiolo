@@ -9,10 +9,12 @@
         <Input type="text" name="email" placeholder="Digite o seu e-mail"/>
         <Input type="password" name="senha" placeholder="Digite a sua senha"/>
         <Button text="Login"/>
-        <div class="icons">
-          <img :src="logo_src[0]" :alt="app_name[0]">
-          <img :src="logo_src[1]" :alt="app_name[1]">
-        </div>
+        <GSignInButton
+          :params="googleSignInParams"
+          @success="onSignInSuccess"
+          @error="onSignInError">
+          Sign in with Google
+        </GSignInButton>
         <p>Não é cadastrado? <router-link to="/cadastro">cadastre-se</router-link></p>
       </form>
     </div>  
@@ -23,22 +25,19 @@
   import Button from "../components/Button.vue"
   import Input from "../components/Input.vue"
   import api from "../services/api"
+  import GSignInButton from 'vue-google-signin-button'
 
   export default {
     name:"loginForm",
     data() {
       return {
-        logo_src:[
-          "/img/google.png",
-          "/img/facebook.png"
-        ],
-        app_name:["Logo do google","Logo do Facebook"],
         message:""
       }
     },
     components:{
       Input,
       Button,
+      GoogleLogin
     },
     created() {
       this.login()
@@ -113,11 +112,6 @@
   a{
     color: #42b983;
   }
-  .icons img{
-    height: 25px;
-    margin: 10px;
-    cursor: pointer;
-  }
   
   .message{
     background-color:tomato;
@@ -133,6 +127,15 @@
     color: white;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
+  .g-signin-button {
+  /* This is where you control how the button looks. Be creative! */
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background-color: #3c82f7;
+  color: #fff;
+  box-shadow: 0 3px 0 #0f69ff;
+}
 
 
 </style>
