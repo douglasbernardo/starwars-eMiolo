@@ -1,10 +1,13 @@
 <template>
   <div>
+    <div class="message" v-if="message">
+      <p>{{message}}</p>
+    </div>
     <div class="form-container">
-      <form action="" method="post">
+      <form @submit.prevent="login" method="post" action="">
         <h1>Faça o Login</h1>
-        <Input type="text" placeholder="Digite o seu e-mail"/>
-        <Input type="password" placeholder="Digite a sua senha"/>
+        <Input type="text" name="email" placeholder="Digite o seu e-mail"/>
+        <Input type="password" name="senha" placeholder="Digite a sua senha"/>
         <Button text="Login"/>
         <div class="icons">
           <img :src="logo_src[0]" :alt="app_name[0]">
@@ -17,8 +20,9 @@
 </template>
 
 <script>
-  import Button from '../components/Button.vue'
+  import Button from "../components/Button.vue"
   import Input from "../components/Input.vue"
+  import api from "../services/api"
 
   export default {
     name:"loginForm",
@@ -28,15 +32,42 @@
           "/img/google.png",
           "/img/facebook.png"
         ],
-        app_name:["Logo do google","Logo do Facebook"]
+        app_name:["Logo do google","Logo do Facebook"],
+        message:""
       }
     },
     components:{
       Input,
       Button,
+    },
+    created() {
+      this.login()
+    },
+    methods: {
+      async login(event){
+        const userObject = {
+          email: event.target.email.value,
+          senha: event.target.senha.value,
+        }
+
+        try{
+          await api.post('/login', userObject).then((response) => {
+            console.log("Logado com sucesso",response.data)
+            localStorage.setItem("token",response.data.token)
+            this.$router.push({ name: 'Home'})
+          })
+        }catch(e){
+          this.message = e.response.data.message
+          setTimeout(()=>{
+            this.message = ""
+          },3000)
+          console.log("erro ao tentar logar:"+e)
+        }
+      }
     }
   }
 </script>
+
 
 
 <style scoped>
@@ -62,9 +93,10 @@
     margin: 2;
   }
   .form-container{
-    width: 100vw;
+   width: 100vw;
     height: 100vh;
     display: flex;
+    position: fixed;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -83,5 +115,21 @@
     margin: 10px;
     cursor: pointer;
   }
+  
+  .message{
+    background-color:tomato;
+    height: 20%;
+    width: 30%;
+    display: flex;
+    border-radius: 25px;
+    margin-top:0.3%;
+  }
+
+  .message p{
+    font-size: 18px;
+    color: white;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+
 
 </style>

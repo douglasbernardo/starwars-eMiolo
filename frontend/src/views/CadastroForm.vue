@@ -33,7 +33,6 @@
       return {
         logo_src:["/img/google.png","/img/facebook.png"],
         app_name:["Logo do google","Logo do Facebook"],
-        users:"",
         message: ""
       }
     },
@@ -43,18 +42,16 @@
     },
     created(){
       this.cadastro()
-      this.usuarios()
     },
     methods: {
       async cadastro(event){
-       
+
         const userObject = {
           nome: event.target.nome.value,
           email: event.target.email.value,
           senha: event.target.senha.value,
           confirmacaoSenha: event.target.confirmacaoSenha.value
         }
-        this.user = userObject
 
         try{
             await api.post('/cadastro', userObject).then((response) => {
@@ -64,18 +61,13 @@
             })
         }catch(e){
            this.message = e.response.data.message
-          setTimeout(()=>{
-              this.message = ""
-          },3000)
+            setTimeout(()=>{
+                this.message = ""
+            },3000)
           console.log("erro ao tentar cadastrar:"+e)
         }
 
       },
-      async usuarios(){
-        await api.get('/usuariosAll').then((response)=>{
-          console.log(response.data.users)
-        })
-      }
     },
   }
 </script>
@@ -102,7 +94,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: -10%;
+    margin-top: -5%;
   }
 
   p{
@@ -125,7 +117,7 @@
     width: 30%;
     display: flex;
     border-radius: 25px;
-    margin-top:2%;
+    margin-top:3%;
   }
 
   .message p{

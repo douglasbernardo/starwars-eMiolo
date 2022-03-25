@@ -1,7 +1,13 @@
 <template>
     <div>
-        <h1>Hello usuario</h1>
+        <h1>Olá,{{}}</h1>
         <p>seu token é: {{token}}</p>
+        <span>
+            clique para ver todos os usuarios cadastrados em nosso sistema
+            <router-link to="/home/usuarios">
+                <p>usuarios</p>
+            </router-link>
+        </span> 
     </div>
 </template>
 
@@ -11,6 +17,7 @@
         name:"Home",
         data(){
             return{
+                user:"",
                 token: localStorage.getItem("token")
             }
         }

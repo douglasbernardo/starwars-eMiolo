@@ -4,6 +4,11 @@
       <router-link id="logo-url" to="/">
         <img id="logo" :src="logo" :alt="alt">
       </router-link>
+      <div>
+        <router-link v-if="token" to="/login" @click="logout">
+          <p>Sair</p>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -11,7 +16,17 @@
 <script>
     export default {
       name: "Navbar",
-      props: ["logo", "alt"]
+      props: ["logo", "alt"],
+      data(){
+        return{
+          token:localStorage.getItem("token")
+        }
+      },
+      methods: {
+        logout(){
+          localStorage.removeItem("token")
+        }
+      },
     }
 </script>
 
@@ -45,5 +60,8 @@
   }
   #nav a:hover {
     color: #FFF;
+  }
+  p{
+    color:white;
   }
 </style>
