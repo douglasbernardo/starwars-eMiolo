@@ -83,11 +83,14 @@ class UsuarioController{
         createToken(usuario,req,res)
     }
 
-    static async profile(req,res){
-        const token = getToken(req)
-        const data = getUserByToken(token)
+    static async perfil(req,res){
+        
+        const id = req.params.id
 
-        console.log(data)
+        const user = await Usuario.findOne({_id:id}).lean()
+        res.status(200).json({
+            user: user
+        })
     }
 
     static async usuarios(req,res){

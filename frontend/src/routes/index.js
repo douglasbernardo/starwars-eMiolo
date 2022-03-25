@@ -6,7 +6,7 @@ import Hello from "../components/Hello"
 import Home from "../components/Home"
 import Usuarios from "../components/Usuarios"
 import Perfil from "../components/Perfil"
-
+import Filmes from "../components/Filmes"
 
 const routes = [
   {
@@ -42,7 +42,7 @@ const routes = [
     }
   },
   {
-    path: '/home/perfil',
+    path: '/home/perfil/:id',
     name: 'Perfil',
     component: Perfil,
     meta:{
@@ -53,6 +53,14 @@ const routes = [
     path:'/home/usuarios',
     name:"Usuarios",
     component:Usuarios,
+    meta:{
+      requiresAuth:true
+    }
+  },
+  {
+    path:'/home/filmes',
+    name:"Filmes",
+    component:Filmes,
     meta:{
       requiresAuth:true
     }

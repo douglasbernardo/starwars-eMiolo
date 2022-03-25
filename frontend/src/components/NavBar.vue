@@ -4,10 +4,18 @@
       <router-link id="logo-url" to="/">
         <img id="logo" :src="logo" :alt="alt">
       </router-link>
-      <div>
-        <router-link v-if="token" to="/login" @click="logout">
-          <p>Sair</p>
-        </router-link>
+      <div v-show="token">
+        <nav>
+          <router-link :to="{ name: 'Perfil', params:{id: userId}}">
+            <p>seu perfil</p>
+          </router-link>
+          <router-link to="/home/usuarios">
+            <p>usuarios</p>
+          </router-link>
+          <router-link to="/login" @click="logout">
+            <p>Sair</p>
+          </router-link>
+        </nav>
       </div>
     </div>
   </div>
@@ -19,11 +27,12 @@
       props: ["logo", "alt"],
       data(){
         return{
-          token:localStorage.getItem("token")
+          token:localStorage.getItem("token"),
+          userId:localStorage.getItem("userId")
         }
       },
       methods: {
-        logout(){
+        async logout(){
           localStorage.removeItem("token")
         }
       },
@@ -63,5 +72,8 @@
   }
   p{
     color:white;
+  }
+  div nav{
+    display: flex;
   }
 </style>

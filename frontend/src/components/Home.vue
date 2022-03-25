@@ -1,14 +1,11 @@
 <template>
     <div>
-        <h1>Olá,{{}}</h1>
-        <p>seu token é: {{token}}</p>
-        <p>seu id é: {{userId}}</p>
-        <span>
-            clique para ver todos os usuarios cadastrados em nosso sistema
-            <router-link to="/home/usuarios">
-                <p>usuarios</p>
-            </router-link>
-        </span> 
+        <h1>Bem vindo ao StarWars Force</h1>
+        <nav>
+            <router-link to=""><p>Personagens</p></router-link>
+            <router-link :to="{ name: 'Filmes'}"><p>Filmes</p></router-link>
+            <router-link to=""><p>Veículos</p></router-link>
+        </nav>
     </div>
 </template>
 
@@ -18,10 +15,26 @@
         name:"Home",
         data(){
             return{
-                user:"",
-                token:localStorage.getItem("token"),
-                userId:localStorage.getItem("userId")
+                
             }
         }
     }
 </script>
+
+<style scoped>
+    h1{
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        text-align: center;
+    }
+    nav{
+        flex-direction: row;
+        display: flex;
+        justify-content: center;
+    }
+    nav p{
+        font-size: 20px;
+        margin: 10px;
+        text-align:center;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+</style>
