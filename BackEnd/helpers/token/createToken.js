@@ -9,7 +9,6 @@ const createToken = async(user,req,res)=>{
             id:user._id
         },
         process.env.TOKEN_SECRET
-
     )
 
     res.status(200).json({

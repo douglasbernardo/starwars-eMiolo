@@ -45,7 +45,6 @@ class UsuarioController{
         try{
             const data = await userObject.save()
             await createToken(data,req,res)
-
         }catch(e){
             res.status(422).json({
                 message:`Erro ao salvar os dados no banco: ${e}`
@@ -53,8 +52,37 @@ class UsuarioController{
         }
     }
 
+    static async login(req,res){
+        const {email,senha} = req.body
+
+        if(!email || !senha){
+            res.status(422).json({
+                message:"Os dados devem ser preenchidos"
+            })
+            return
+        }
+
+        const usuario = await Usuario.findOne({email:email})
+
+        if(!usuario){
+            res.status(422).json({
+                message:"Não há usuário com este e-mail!"
+            })
+            return
+        }
+
+        if(!await bcrypt.compare(senha,usuario.senha)) {
+            res.status(422).json({
+                message:"As senhas não conferem!"
+            })
+            return
+        }  
+       
+        createToken(usuario,req,res)
+    }
+
     static async usuarios(req,res){
-        const data = await Usuario.find({})
+        const data = await Usuario.find()
         res.status(200).json({
             users: data
         })
