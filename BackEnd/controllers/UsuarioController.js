@@ -2,6 +2,8 @@
 const Usuario = require("../models/Usuario")
 const bcrypt = require("bcrypt")
 const createToken = require("../helpers/token/createToken")
+const getToken = require("../helpers/token/getToken")
+const getUserByToken = require("../helpers/token/getUserByToken")
 
 class UsuarioController{
     static teste(req,res){
@@ -79,6 +81,13 @@ class UsuarioController{
         }  
        
         createToken(usuario,req,res)
+    }
+
+    static async profile(req,res){
+        const token = getToken(req)
+        const data = getUserByToken(token)
+
+        console.log(data)
     }
 
     static async usuarios(req,res){
