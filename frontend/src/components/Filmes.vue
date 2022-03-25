@@ -2,17 +2,11 @@
     <div>
         <div class="container">
             <div class="box" v-for="filme in filmes" :key="filme.id">
-                <p> Título:{{filme.title}}</p>
-                <p> Descrição:{{filme.opening_crawl}}</p> 
-                <p> Data:{{filme.release_date}}</p>
+                <p> <strong>Título:</strong> {{filme.title}}</p>
+                <p> <strong>Descrição:</strong> {{filme.opening_crawl}}</p> 
+                <p> <strong>Data:</strong> {{filme.release_date}}</p>
             </div>
         </div>
-        <!-- <p v-for="filme in filmes" :key="filme.id">
-            {{filme.title}} - {{filme.opening_crawl}} - {{filme.release_date}}
-            title,
-            opening_crawl,
-            release_data, 
-        </p> -->
     </div>
 </template>
 
