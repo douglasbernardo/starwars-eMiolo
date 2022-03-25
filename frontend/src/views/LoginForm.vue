@@ -51,12 +51,15 @@
         }
 
         try{
-          await api.post('/login', userObject).then((response) => {
-            console.log("Logado com sucesso",response.data)
-            localStorage.setItem("token",response.data.token)
-            this.$router.push({ name: 'Home'})
-          })
-        }catch(e){
+          await api.post('/login', userObject)
+            .then((response) => {
+              console.log("Logado com sucesso",response.data)
+              localStorage.setItem("userId",response.data.userId)
+              localStorage.setItem("token",response.data.token)
+              this.$router.push({ name: 'Home'})
+            })
+        }
+        catch(e){
           this.message = e.response.data.message
           setTimeout(()=>{
             this.message = ""

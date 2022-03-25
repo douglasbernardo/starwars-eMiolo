@@ -5,6 +5,8 @@ import CadastroForm from "../views/CadastroForm"
 import Hello from "../components/Hello"
 import Home from "../components/Home"
 import Usuarios from "../components/Usuarios"
+import Perfil from "../components/Perfil"
+
 
 const routes = [
   {
@@ -35,6 +37,14 @@ const routes = [
     path:'/home',
     name:"Home",
     component:Home,
+    meta:{
+      requiresAuth:true
+    }
+  },
+  {
+    path: '/home/perfil',
+    name: 'Perfil',
+    component: Perfil,
     meta:{
       requiresAuth:true
     }
