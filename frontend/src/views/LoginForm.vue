@@ -9,11 +9,12 @@
         <Input type="text" name="email" placeholder="Digite o seu e-mail"/>
         <Input type="password" name="senha" placeholder="Digite a sua senha"/>
         <Button text="Login"/>
+        <div class="icons">
+          <img :src="logo_src[0]" alt="" @click="SignInGoogle">
+        </div>
         <p>Não é cadastrado? <router-link to="/cadastro">cadastre-se</router-link></p>
       </form>
-      <div class="icons">
-        <button @click="onSignInGoogleSuccess" ><img :src="logo_src[0]" :alt="app_name[0]"></button>
-      </div>
+      <h2>{{user}}</h2>
     </div>  
   </div>
 </template>
@@ -22,6 +23,7 @@
   import Button from "../components/Button.vue"
   import Input from "../components/Input.vue"
   import api from "../services/api"
+  import {inject} from "vue"
 
   export default {
     name:"loginForm",
@@ -29,12 +31,20 @@
       return {
         logo_src:["/img/google.png"],
         app_name:["Logo do google"],
-        message:""
+        message:"",
+        user:""
       }
     },
     components:{
       Input,
       Button,
+    },
+    setup() {
+      const Vue3GoogleOauth = inject("Vue3GoogleOauth")
+
+      return{
+        Vue3GoogleOauth
+      }
     },
     methods: {
       async login(event){
@@ -60,16 +70,23 @@
           console.log("erro ao tentar logar:"+e)
         }
       },
-      async onSignInGoogleSuccess(){
-        console.log("trying to login with google")
-      },
-      async onSignInGoogleError(){
+      async SignInGoogle(){
+        const googleUser = await this.$gAuth.signIn()
+        console.log(this.$gAuth.signIn)
+        
+
+        const profile = googleUser.getBasicProfile()
+        const user = {
+          id:profile.getId(),
+          nome:profile.getName(),
+          email:profile.getEmail()
+        }
+        this.user = user
 
       }
     },
     created(){
-      this.login(),
-      this.onSignInGoogleSuccess()
+      this.login()
     }
   }
 </script>
@@ -131,7 +148,7 @@
     color: white;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
-   .icons img{
+  .icons img{
     height: 25px;
     margin: 10px;
     cursor: pointer;
