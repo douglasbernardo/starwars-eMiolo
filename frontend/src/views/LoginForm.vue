@@ -10,11 +10,10 @@
         <Input type="password" name="senha" placeholder="Digite a sua senha"/>
         <Button text="Login"/>
         <div class="icons">
-          <img :src="logo_src[0]" alt="" @click="SignInGoogle">
+          <img :src="logo_src" :alt="app_name" @click="SignInGoogle">
         </div>
         <p>Não é cadastrado? <router-link to="/cadastro">cadastre-se</router-link></p>
       </form>
-      <h2>{{user}}</h2>
     </div>  
   </div>
 </template>
@@ -29,15 +28,14 @@
     name:"loginForm",
     data() {
       return {
-        logo_src:["/img/google.png"],
-        app_name:["Logo do google"],
+        logo_src:"/img/google.png",
+        app_name:"Logo do google",
         message:"",
-        user:""
       }
     },
     components:{
       Input,
-      Button,
+      Button
     },
     setup() {
       const Vue3GoogleOauth = inject("Vue3GoogleOauth")
@@ -71,17 +69,28 @@
         }
       },
       async SignInGoogle(){
-        const googleUser = await this.$gAuth.signIn()
-        console.log(this.$gAuth.signIn)
-        
 
-        const profile = googleUser.getBasicProfile()
-        const user = {
-          id:profile.getId(),
-          nome:profile.getName(),
-          email:profile.getEmail()
+        try{
+          const googleUser = await this.$gAuth.signIn()
+          const profile = googleUser.getBasicProfile()
+
+          await api.post("/googleLogin",{
+            id:profile.getId(),
+            nome:profile.getName(),
+            email:profile.getEmail()
+          })
+            .then((response)=>{
+              console.log(response.data)
+          })
         }
-        this.user = user
+        catch(e){
+          this.message = e.response.data.message
+          setTimeout(()=>{
+            this.message = ""
+          },3000)
+          console.log("erro ao tentar logar com google:"+e)
+        }
+
 
       }
     },

@@ -6,7 +6,7 @@
       </router-link>
       <div v-show="token">
         <nav>
-          <router-link :to="{ name: 'Perfil', params:{id: userId}}">
+          <router-link :to="{ name: 'Perfil', params:{id: userId == true}}">
             <p>seu perfil</p>
           </router-link>
           <router-link to="/home/usuarios">
