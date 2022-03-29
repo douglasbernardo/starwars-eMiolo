@@ -84,23 +84,33 @@ class UsuarioController{
     }
 
     static async loginGoogle(req,res){
-        res.send("Hello")
+        const {id,nome,email} = req.body
 
-        const {OAuth2Client} = require('google-auth-library');
-        const client = new OAuth2Client(process.env.ID_CLIENT);
-        async function verify() {
-        const ticket = await client.verifyIdToken({
-            idToken: token,
-            audience: process.env.ID_CLIENT,  // Specify the CLIENT_ID of the app that accesses the backend
-            // Or, if multiple clients access the backend:
-            //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
-        });
-        const payload = ticket.getPayload();
-        const userid = payload['sub'];
-        // If request specified a G Suite domain:
-        // const domain = payload['hd'];
+       // console.log(id,nome,email)
+
+        const userEmailExists = await Usuario.findOne({email:email})
+        if(userEmailExists){
+            res.status(422).json({
+                message:"Esse e-mail já é cadastrado!"
+            })
+            return
         }
-        verify().catch(console.error);
+
+        // const {OAuth2Client} = require('google-auth-library');
+        // const client = new OAuth2Client(process.env.ID_CLIENT);
+        // async function verify() {
+        // const ticket = await client.verifyIdToken({
+        //     idToken: token,
+        //     audience: process.env.ID_CLIENT,  // Specify the CLIENT_ID of the app that accesses the backend
+        //     // Or, if multiple clients access the backend:
+        //     //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+        // });
+        // const payload = ticket.getPayload();
+        // const userid = payload['sub'];
+        // // If request specified a G Suite domain:
+        // // const domain = payload['hd'];
+        // }
+        // verify().catch(console.error);
     }
 
     static async perfil(req,res){

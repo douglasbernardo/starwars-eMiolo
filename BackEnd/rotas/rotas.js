@@ -6,7 +6,7 @@ const UsuarioController = require("../controllers/UsuarioController")
 router.get("/teste",UsuarioController.teste)
 router.post("/cadastro",UsuarioController.cadastro)
 router.post("/login",UsuarioController.login)
-router.get("/googleLogin",UsuarioController.loginGoogle)
+router.post("/googleLogin",UsuarioController.loginGoogle)
 router.get("/perfil/:id",UsuarioController.perfil)
 router.get("/usuariosAll",UsuarioController.usuarios)
 
