@@ -32,19 +32,13 @@
                 users:""
             }
         },
-        methods: {
-            async getUsers(){
-                await api.get("/usuariosAll").then((response)=>{
-                    this.users = response.data.users
-                })
-            }
-        },
-        created() {
-            this.getUsers()
-        },
+        created: async function() {
+            await api.get("/usuariosAll").then((response)=>{
+                this.users = response.data.users
+            })
+        }
     }
 </script>
-
 
 <style>
     table {

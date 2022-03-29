@@ -11,10 +11,6 @@
         <Input type="password" name="senha" v-model="senha" placeholder="Digite a sua senha"/>
         <Input type="password" name="confirmacaoSenha" v-model="confirmacaoSenha" placeholder="Confirme a seu senha"/>
         <Button text="cadastre-se"/>
-        <div class="icons">
-          <a href="http://google.com"><img :src="logo_src[0]" :alt="app_name[0]"></a>
-          <a href="http://facebook.com"><img :src="logo_src[1]" :alt="app_name[1]"></a>
-        </div>
         <p>Já é cadastrado? Faça o <router-link to="/login">login</router-link></p>
       </form>
       <span>{{users}}</span>
@@ -31,8 +27,6 @@
     name:"loginForm",
     data() {
       return {
-        logo_src:["/img/google.png","/img/facebook.png"],
-        app_name:["Logo do google","Logo do Facebook"],
         message: ""
       }
     },
@@ -104,11 +98,6 @@
 
   a {
     color: #42b983;
-  }
-  .icons img{
-    height: 25px;
-    margin: 10px;
-    cursor: pointer;
   }
 
   .message{
