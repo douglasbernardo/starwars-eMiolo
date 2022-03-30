@@ -91,13 +91,13 @@ class UsuarioController{
         }
         if(!usuario){
 
+            const user = new Usuario({
+                id_google:id,
+                nome:nome,
+                email:email
+            })
+
             try{
-                const user = new Usuario({
-                    id_google:id,
-                    nome:nome,
-                    email:email
-                })
-                
                 const data = await user.save()
                 createToken(data,req,res)
             }
