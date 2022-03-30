@@ -1,8 +1,8 @@
 <template>
   <div>
-      <div class="message" v-if="message">
-        <p>{{message}}</p>
-      </div>
+    <div class="message" v-if="message">
+      <p>{{message}}</p>
+    </div>
     <div class="form-container">
       <form @submit.prevent="cadastro" method="post" action="">
         <h1>Faça o Cadastro</h1>
@@ -56,7 +56,7 @@
         }catch(e){
            this.message = e.response.data.message
             setTimeout(()=>{
-                this.message = ""
+              this.message = ""
             },3000)
           console.log("erro ao tentar cadastrar:"+e)
         }
@@ -100,10 +100,10 @@
     color: #42b983;
   }
 
-  .message{
+  div .message{
     background-color:tomato;
-    height: 20%;
-    width: 30%;
+    height: 100%;
+    width: 100%;
     display: flex;
     border-radius: 25px;
     margin-top:3%;

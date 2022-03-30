@@ -9,11 +9,9 @@
         <Input type="text" name="email" placeholder="Digite o seu e-mail"/>
         <Input type="password" name="senha" placeholder="Digite a sua senha"/>
         <Button text="Login"/>
-        <div class="icons">
-          <img :src="logo_src" :alt="app_name" @click="SignInGoogle">
-        </div>
         <p>Não é cadastrado? <router-link to="/cadastro">cadastre-se</router-link></p>
       </form>
+      <button @click="SignInGoogle">Login com Google<img :src="logo_src"/></button>
     </div>  
   </div>
 </template>
@@ -46,13 +44,12 @@
     },
     methods: {
       async login(event){
-        const userObject = {
-          email: event.target.email.value,
-          senha: event.target.senha.value,
-        }
 
         try{
-          await api.post('/login', userObject)
+          await api.post('/login', {
+            email: event.target.email.value,
+            senha: event.target.senha.value,
+          })
             .then((response) => {
               console.log("Logado com sucesso",response.data)
               localStorage.setItem("userId",response.data.userId)
@@ -80,7 +77,10 @@
             email:profile.getEmail()
           })
             .then((response)=>{
-              console.log(response.data)
+              console.log("Logado com sucesso",response.data)
+              localStorage.setItem("userId",response.data.userId)
+              localStorage.setItem("token",response.data.token)
+              this.$router.push({ name: 'Home'})
           })
         }
         catch(e){
@@ -157,12 +157,24 @@
     color: white;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
-  .icons img{
-    height: 25px;
-    margin: 10px;
+
+  button{
+    height: 40px;
+    width: 10%;
+    margin-left:5px;
+    background: #42b983;
+    border-radius: 30px;
+    border: none;
     cursor: pointer;
+    color: aliceblue;
   }
  
+  button img{
+    height: 20px;
+    width: 20px;
+    margin: -5px;
+    margin-left: 20px;
+  }
 
 
 </style>

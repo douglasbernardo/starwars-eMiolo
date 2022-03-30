@@ -1,20 +1,18 @@
 <template>
     <div>
-        <button class="btn">{{text}}</button>
+      <button class="btn">{{text}}</button>
     </div>
 </template>
 
 
 <script>
-
     export default {
-        name:"Button",
-        props:["text"],
-}
+      name:"Button",
+      props:["text"],
+    }
 </script>
 <style scoped>
-
-.btn{
+  .btn{
     color: black;
     height: 30px;
     background-color: #800000;
@@ -30,5 +28,4 @@
   .btn:hover{
     background-color: #8B0000;
   }
-
 </style>

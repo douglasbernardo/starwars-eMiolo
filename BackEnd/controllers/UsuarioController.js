@@ -6,9 +6,6 @@ const getToken = require("../helpers/token/getToken")
 const getUserByToken = require("../helpers/token/getUserByToken")
 
 class UsuarioController{
-    static teste(req,res){
-        res.send("Começando a criação da api")
-    }
     static async cadastro(req,res){
       
         const {nome,email,senha,confirmacaoSenha} = req.body
@@ -86,31 +83,29 @@ class UsuarioController{
     static async loginGoogle(req,res){
         const {id,nome,email} = req.body
 
-       // console.log(id,nome,email)
-
-        const userEmailExists = await Usuario.findOne({email:email})
-        if(userEmailExists){
-            res.status(422).json({
-                message:"Esse e-mail já é cadastrado!"
+        const usuario = await Usuario.findOne({email:email})
+        if(usuario){
+            res.status(200).json({
+                message:"E-mail já cadastrado"
             })
-            return
         }
+        if(!usuario){
 
-        // const {OAuth2Client} = require('google-auth-library');
-        // const client = new OAuth2Client(process.env.ID_CLIENT);
-        // async function verify() {
-        // const ticket = await client.verifyIdToken({
-        //     idToken: token,
-        //     audience: process.env.ID_CLIENT,  // Specify the CLIENT_ID of the app that accesses the backend
-        //     // Or, if multiple clients access the backend:
-        //     //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
-        // });
-        // const payload = ticket.getPayload();
-        // const userid = payload['sub'];
-        // // If request specified a G Suite domain:
-        // // const domain = payload['hd'];
-        // }
-        // verify().catch(console.error);
+            try{
+                const user = new Usuario({
+                    id_google:id,
+                    nome:nome,
+                    email:email
+                })
+                
+                const data = await user.save()
+                createToken(data,req,res)
+            }
+            catch(e){
+                console.log("Erro ao cadastradar",e)
+            }
+        }
+        createToken(usuario,req,res)
     }
 
     static async perfil(req,res){
