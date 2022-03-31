@@ -33,7 +33,8 @@
             }
         },
         created: async function() {
-            await api.get("/usuariosAll").then((response)=>{
+            await api.get("/usuariosAll")
+            .then((response)=>{
                 this.users = response.data.users
             })
         }

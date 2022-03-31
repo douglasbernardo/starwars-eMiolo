@@ -45,11 +45,13 @@
     methods: {
       async login(event){
 
+        
         try{
-          await api.post('/login', {
+          const userObj = {
             email: event.target.email.value,
             senha: event.target.senha.value,
-          })
+          }
+          await api.post('/login', userObj)
             .then((response) => {
               console.log("Logado com sucesso",response.data)
               localStorage.setItem("userId",response.data.userId)
@@ -70,12 +72,13 @@
         try{
           const googleUser = await this.$gAuth.signIn()
           const profile = googleUser.getBasicProfile()
-
-          await api.post("/googleLogin",{
+          const userGoogleObj = {
             id:profile.getId(),
             nome:profile.getName(),
             email:profile.getEmail()
-          })
+          }
+
+          await api.post('/googleLogin',userGoogleObj)
             .then((response)=>{
               console.log("Logado com sucesso",response.data)
               localStorage.setItem("userId",response.data.userId)

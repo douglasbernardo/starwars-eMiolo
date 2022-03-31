@@ -84,6 +84,7 @@ class UsuarioController{
         const {id,nome,email} = req.body
 
         const usuario = await Usuario.findOne({email:email})
+
         if(usuario){
             res.status(200).json({
                 message:"E-mail já cadastrado"
@@ -91,14 +92,14 @@ class UsuarioController{
         }
         if(!usuario){
 
-            const user = new Usuario({
+            const objUsuario = new Usuario({
                 id_google:id,
                 nome:nome,
                 email:email
             })
 
             try{
-                const data = await user.save()
+                const data = await objUsuario.save()
                 createToken(data,req,res)
             }
             catch(e){

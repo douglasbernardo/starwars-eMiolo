@@ -22,4 +22,4 @@ app.get("/",(req,res)=>{
 const rotaUsuario = require("./rotas/rotas")
 app.use("/usuario",rotaUsuario)
 
-app.listen(process.env.PORT)
+app.listen(2000)
