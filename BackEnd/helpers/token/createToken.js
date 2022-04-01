@@ -2,11 +2,11 @@ const jwt = require("jsonwebtoken")
 
 require("dotenv").config()
 
-const createToken = async(user,req,res)=>{
+const createToken = async(usuario,req,res)=>{
     const token = jwt.sign(
         {
-            name:user.nome,
-            id:user._id
+            name:usuario.nome,
+            id:usuario._id
         },
         process.env.TOKEN_SECRET
     )
@@ -14,7 +14,7 @@ const createToken = async(user,req,res)=>{
     res.status(200).json({
         message:"Você está autenticado",
         token:token,
-        userId:user._id
+        userId:usuario._id
     })
 }
 

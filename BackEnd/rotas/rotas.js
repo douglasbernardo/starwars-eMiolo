@@ -7,6 +7,6 @@ router.post("/cadastro",UsuarioController.cadastro)
 router.post("/login",UsuarioController.login)
 router.post("/googleLogin",UsuarioController.loginGoogle)
 router.get("/perfil/:id",UsuarioController.perfil)
-router.get("/usuariosAll",UsuarioController.usuarios)
+router.get("/usuariosAll",UsuarioController.usuariosAll)
 
 module.exports = router

@@ -37,15 +37,10 @@
                 user:"",
             }
         },
-        methods:{
-            async perfil(){
-                await api.get(`/perfil/${this.$route.params.id}`).then((response)=>{
-                    this.user = response.data.user
-                })
-            }
-        },
-        created(){
-            this.perfil()
+        created: async function perfil(){
+            await api.get(`/perfil/${this.$route.params.id}`).then((response)=>{
+                this.user = response.data.user
+            })
         }
     }
 </script>

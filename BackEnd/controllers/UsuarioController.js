@@ -85,11 +85,6 @@ class UsuarioController{
 
         const usuario = await Usuario.findOne({email:email})
 
-        if(usuario){
-            res.status(200).json({
-                message:"E-mail já cadastrado"
-            })
-        }
         if(!usuario){
 
             const objUsuario = new Usuario({
@@ -119,7 +114,7 @@ class UsuarioController{
         })
     }
 
-    static async usuarios(req,res){
+    static async usuariosAll(req,res){
         const data = await Usuario.find()
         res.status(200).json({
             users: data

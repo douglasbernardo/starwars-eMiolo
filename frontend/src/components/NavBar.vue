@@ -4,11 +4,9 @@
       <router-link id="logo-url" to="/">
         <img id="logo" :src="logo" :alt="alt">
       </router-link>
-      <div v-show="token">
-        <nav>
-          <router-link :to='
-            {name:"Perfil", params:{id: userId }}
-          '>
+      <div>
+        <nav v-show="isLogged">
+          <router-link :to='{name:"Perfil", params:{id: userId  }}'>
             <p>seu perfil</p >
           </router-link>
           <router-link to="/home/usuarios">
@@ -31,11 +29,13 @@
         return{
           token:localStorage.getItem("token"),
           userId:localStorage.getItem("userId"),
+          isLogged: this.userId !== "" ? 1 : 0
         }
       },
       methods: {
         async logout(){
           localStorage.removeItem("token")
+          localStorage.removeItem("userId")
         }
       },
     }
