@@ -42,7 +42,7 @@ const routes = [
     }
   },
   {
-    path: '/home/perfil/:userid',
+    path: '/home/perfil/:id',
     name: 'Perfil',
     component: Perfil,
     meta:{

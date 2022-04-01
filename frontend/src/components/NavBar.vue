@@ -6,7 +6,9 @@
       </router-link>
       <div v-show="token">
         <nav>
-          <router-link to="">
+          <router-link :to='
+            {name:"Perfil", params:{id: userId }}
+          '>
             <p>seu perfil</p >
           </router-link>
           <router-link to="/home/usuarios">
@@ -29,7 +31,6 @@
         return{
           token:localStorage.getItem("token"),
           userId:localStorage.getItem("userId"),
-          id:""
         }
       },
       methods: {
