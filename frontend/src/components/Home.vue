@@ -2,8 +2,8 @@
     <div>
         <h1>Bem vindo ao StarWars Force</h1>
         <nav>
-            <router-link to=""><p>Personagens</p></router-link>
-            <router-link :to="{ name: 'Filmes'}"><p>Filmes</p></router-link>
+            <router-link :to="{ name:'Personagens' }"><p>Personagens</p></router-link>
+            <router-link :to="{ name: 'Filmes' }"><p>Filmes</p></router-link>
             <router-link to=""><p>Veículos</p></router-link>
         </nav>
     </div>

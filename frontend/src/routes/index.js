@@ -7,6 +7,8 @@ import Home from "../components/Home"
 import Usuarios from "../components/Usuarios"
 import Perfil from "../components/Perfil"
 import Filmes from "../components/Filmes"
+import Personagens from "../views/personagens/Personagens"
+import Sobre from "../views/personagens/Sobre"
 
 const routes = [
   {
@@ -58,13 +60,31 @@ const routes = [
     }
   },
   {
-    path:'/home/filmes',
+    path:'/home/starwars/filmes',
     name:"Filmes",
     component:Filmes,
     meta:{
       requiresAuth:true
     }
   },
+  {
+    path:'/home/starwars/personagens',
+    name:"Personagens",
+    component:Personagens,
+    meta:{
+      requiresAuth:true
+    }
+  },
+
+  {
+    path:'/home/starwars/personagens/sobre/:id',
+    name:"Sobre",
+    component:Sobre,
+    meta:{  
+      requiresAuth:true
+    }
+  },
+  
 
   {
     path:"/:patchMatch(.*)",
