@@ -22,12 +22,6 @@
                 <th>Cor dos olhos:</th>
                 <td>{{personagem.eye_color}}</td>
             </tr>
-            <!-- <tr>
-                <th>Filmes:</th>
-                <td v-for="(person, index) in personagem" :key="index">
-                    {{index.name}}
-                </td>
-            </tr> -->
         </table>
         <router-link :to="{name:'Personagens'}">Voltar</router-link>
     </div>

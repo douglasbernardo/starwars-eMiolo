@@ -4,9 +4,9 @@
       <router-link id="logo-url" to="/">
         <img id="logo" :src="logo" :alt="alt">
       </router-link>
-      <div>
-        <nav v-show="isLogged">
-          <router-link :to='{name:"Perfil", params:{id: userId  }}'>
+      <div v-if="userId">
+        <nav>
+          <router-link :to="{name:'Perfil',params:{id: userId }}">
             <p>seu perfil</p >
           </router-link>
           <router-link to="/home/usuarios">
@@ -27,9 +27,7 @@
       props: ["logo", "alt"],
       data(){
         return{
-          token:localStorage.getItem("token"),
-          userId:localStorage.getItem("userId"),
-          isLogged: this.userId !== "" ? 1 : 0
+          userId: localStorage.getItem("userId"),
         }
       },
       methods: {
