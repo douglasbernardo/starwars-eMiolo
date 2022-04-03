@@ -29,6 +29,7 @@
                 </td>
             </tr> -->
         </table>
+        <router-link :to="{name:'Personagens'}">Voltar</router-link>
     </div>
 </template>
 

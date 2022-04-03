@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h2>Todos os Personagens</h2>
+            <h2>Lista de Personagens</h2>
             <table>
                 <tr>
                     <th>Nome dos Personagens:</th>
@@ -15,7 +15,6 @@
                 </tr>
             </table>
         </div>
-        <h3>{{teste}}</h3>
         <router-link to="/home">
             <p>Voltar</p>
         </router-link>
@@ -29,20 +28,12 @@
       data() {
         return{
             personagens:"",
-            teste:""
         }
       },
-
-      methods: {
-        async getPersonagens(){
-            await axios.get("https://swapi.dev/api/people/").then((response)=>{
-                this.personagens = response.data.results
-            })
-        }
-      },
-
-      created() {
-        this.getPersonagens()
+      created: async function () {
+        await axios.get("https://swapi.dev/api/people/").then((response)=>{
+            this.personagens = response.data.results
+        })
       },
     
 
