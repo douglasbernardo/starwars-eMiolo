@@ -6,7 +6,7 @@
       </router-link>
       <div>
         <nav v-show="isLogged">
-          <router-link :to='{name:"Perfil", params:{id: userId==true  }}'>
+          <router-link :to='{name:"Perfil", params:{id: userId  }}'>
             <p>seu perfil</p >
           </router-link>
           <router-link to="/home/usuarios">

@@ -11,9 +11,7 @@
                     <td>
                         {{personagem.name}}
                     </td>
-                    <button>
-                        {{personagem.url.slice(29,-1)}}
-                    </button>
+                    <router-link :to="{name:'Sobre',params:{id:personagem.url.slice(29,-1)}}">Mais</router-link>
                 </tr>
             </table>
         </div>
@@ -40,17 +38,11 @@
             await axios.get("https://swapi.dev/api/people/").then((response)=>{
                 this.personagens = response.data.results
             })
-        },
-
-        async searchPersonagem(){
-           const url = this.personagens.url
-           this.teste = url
         }
       },
 
       created() {
-        this.getPersonagens(),
-        this.searchPersonagem()
+        this.getPersonagens()
       },
     
 
