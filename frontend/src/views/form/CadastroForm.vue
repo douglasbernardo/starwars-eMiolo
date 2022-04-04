@@ -19,9 +19,9 @@
 </template>
 
 <script>
-  import Input from "../components/Input.vue"
-  import Button from '../components/Button.vue'
-  import api from "../services/api"
+  import Input from "../../components/Input.vue"
+  import Button from '../../components/Button.vue'
+  import api from "../../services/api"
   
   export default {
     name:"loginForm",

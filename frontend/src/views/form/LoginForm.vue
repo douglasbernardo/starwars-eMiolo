@@ -17,9 +17,9 @@
 </template>
 
 <script>
-  import Button from "../components/Button.vue"
-  import Input from "../components/Input.vue"
-  import api from "../services/api"
+  import Button from "../../components/Button.vue"
+  import Input from "../../components/Input.vue"
+  import api from "../../services/api"
   import {inject} from "vue"
 
   export default {

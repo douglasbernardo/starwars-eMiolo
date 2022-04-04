@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import LoginForm from "../views/LoginForm"
-import CadastroForm from "../views/CadastroForm"
 import Hello from "../components/Hello"
 import Home from "../components/Home"
 import Usuarios from "../components/Usuarios"
 import Perfil from "../components/Perfil"
 import Filmes from "../components/Filmes"
+
+/* views */
+import LoginForm from "../views/form/LoginForm"
+import CadastroForm from "../views/form/CadastroForm"
 import Personagens from "../views/personagens/Personagens"
 import Sobre from "../views/personagens/Sobre"
 
