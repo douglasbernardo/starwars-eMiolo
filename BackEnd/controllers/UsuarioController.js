@@ -3,7 +3,6 @@ const Usuario = require("../models/Usuario")
 const bcrypt = require("bcrypt")
 const createToken = require("../helpers/token/createToken")
 const getToken = require("../helpers/token/getToken")
-const getUserByToken = require("../helpers/token/getUserByToken")
 
 class UsuarioController{
     static async cadastro(req,res){
