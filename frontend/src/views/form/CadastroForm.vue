@@ -13,7 +13,6 @@
         <Button text="cadastre-se"/>
         <p>Já é cadastrado? Faça o <router-link to="/login">login</router-link></p>
       </form>
-      <span>{{users}}</span>
     </div>  
   </div>
 </template>

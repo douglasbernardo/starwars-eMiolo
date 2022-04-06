@@ -44,8 +44,6 @@
     },
     methods: {
       async login(event){
-
-        
         try{
           const userObj = {
             email: event.target.email.value,

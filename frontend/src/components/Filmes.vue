@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import axios from "axios"
+    import axios from "axios"
     export default {
         name:"Filmes",
         data(){
@@ -19,23 +19,15 @@ import axios from "axios"
                 filmes:""
             }
         },
-        methods: {
-            async showFilmes(){
-
-                await axios.get("https://swapi.dev/api/films/").then((response)=>{
-                    this.filmes = response.data.results
-                })
-            }
-        },
-        created(){
-            this.showFilmes()
+        created: async function(){
+            await axios.get("https://swapi.dev/api/films/").then((response)=>{
+                this.filmes = response.data.results
+            })
         }
     }
 </script>
 
 <style scoped>
-
-
     .container{
         display: flex;
         width: 100%;
