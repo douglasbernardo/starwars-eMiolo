@@ -35,7 +35,7 @@
         data(){
             return{
                 user:"",
-                LoggedWithGoogle:localStorage.getItem("googleId")
+                googleId: localStorage.getItem("googleId")
             }
         },
         created: async function MyProfile(){
@@ -46,10 +46,10 @@
 
         computed:{
             isLoggedWith(){
-                return localStorage.getItem("googleId") ? 'Você está logado com o google' : this.user.senha
+                return this.googleId ? 'Você está logado com o google' : this.user.senha
             },
             isLoggedWithGoogle(){
-                return this.LoggedWithGoogle ? 'Não há senha cadastrada' : 'Senha Criptografada'
+                return this.googleId ? 'Não há senha cadastrada' : 'Senha Criptografada'
             }
         }
     }
