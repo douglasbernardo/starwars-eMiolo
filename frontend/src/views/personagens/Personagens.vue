@@ -7,7 +7,9 @@
                     <th>Nome dos Personagens:</th>
                     <th>Mais Sobre</th>
                 </tr>
-                <tr v-for="(personagem, index) in personagens" :key="index">
+                <tr 
+                    v-for="(personagem, index) in personagens" 
+                    :key="index">
                     <td>
                         {{personagem.name}}
                     </td>

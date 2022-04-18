@@ -8,7 +8,7 @@ import Filmes from "../components/Filmes"
 
 /* views */
 import LoginForm from "../views/form/LoginForm"
-import CadastroForm from "../views/form/CadastroForm"
+import SignUpForm from "../views/form/SignUpForm"
 import Personagens from "../views/personagens/Personagens"
 import Sobre from "../views/personagens/Sobre"
 
@@ -31,8 +31,8 @@ const routes = [
   },
   {
     path: '/cadastro',
-    name: 'Cadastro',
-    component: CadastroForm,
+    name: 'SignUpForm',
+    component: SignUpForm,
     meta:{
       requiresAuth:false
     }

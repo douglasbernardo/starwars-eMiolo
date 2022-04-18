@@ -6,7 +6,7 @@
                 <tr>
                     <th>Nome:</th>
                     <th>E-mail</th>
-                    <th>Senha Criptografada</th>
+                    <th>{{isLoggedWithGoogle}}</th>
                 </tr>
                 <tr>
                     <td>
@@ -15,8 +15,8 @@
                     <td>
                         {{user.email}}
                     </td>
-                      <td>
-                        {{user.senha}}
+                    <td>
+                        {{isLoggedWith}}
                     </td>
                 </tr>
             </table>
@@ -35,12 +35,22 @@
         data(){
             return{
                 user:"",
+                LoggedWithGoogle:localStorage.getItem("googleId")
             }
         },
-        created: async function perfil(){
+        created: async function MyProfile(){
             await api.get(`/perfil/${this.$route.params.id}`).then((response)=>{
                 this.user = response.data.user
             })
+        },
+
+        computed:{
+            isLoggedWith(){
+                return localStorage.getItem("googleId") ? 'Você está logado com o google' : this.user.senha
+            },
+            isLoggedWithGoogle(){
+                return this.LoggedWithGoogle ? 'Não há senha cadastrada' : 'Senha Criptografada'
+            }
         }
     }
 </script>

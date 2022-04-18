@@ -3,7 +3,11 @@
         <div class="input-container">
             <label>
                 {{ label }}
-                <input :type="type" :name="name" :placeholder="placeholder"/>
+                <input 
+                    :type="type" 
+                    :name="name" 
+                    :placeholder="placeholder"
+                />
             </label>
         </div>
     </div>

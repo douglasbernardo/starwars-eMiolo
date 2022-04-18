@@ -2,7 +2,11 @@
   <div>
     <div id="nav">
       <router-link id="logo-url" to="/">
-        <img id="logo" :src="logo" :alt="alt">
+        <img 
+          id="logo" 
+          :src="logo" 
+          :alt="alt"
+        >
       </router-link>
       <div v-if="userId">
         <nav>
@@ -34,6 +38,10 @@
         async logout(){
           localStorage.removeItem("token")
           localStorage.removeItem("userId")
+          
+          if(localStorage.getItem("googleId")){
+            return localStorage.removeItem("googleId")
+          }
         }
       },
     }

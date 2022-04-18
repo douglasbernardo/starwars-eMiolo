@@ -81,6 +81,7 @@
               console.log("Logado com sucesso",response.data)
               localStorage.setItem("userId",response.data.userId)
               localStorage.setItem("token",response.data.token)
+              localStorage.setItem("googleId",userGoogleObj.id)
               this.$router.push({ name: 'Home'})
           })
         }

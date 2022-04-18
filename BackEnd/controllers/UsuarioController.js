@@ -113,7 +113,7 @@ class UsuarioController{
         })
     }
 
-    static async usuariosAll(req,res){
+    static async getUsuarios(req,res){
         const data = await Usuario.find()
         res.status(200).json({
             users: data
