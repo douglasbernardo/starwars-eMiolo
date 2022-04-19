@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="container">
-            <div class="box" v-for="filme in filmes" :key="filme.id">
-                <p> <strong>Título:</strong> {{filme.title}}</p>
-                <p> <strong>Descrição:</strong> {{filme.opening_crawl}}</p> 
-                <p> <strong>Data:</strong> {{filme.release_date}}</p>
+            <div class="box" v-for="movie in movies" :key="movie.id">
+                <p> <strong>Título:</strong> {{movie.title}}</p>
+                <p> <strong>Descrição:</strong> {{movie.opening_crawl}}</p> 
+                <p> <strong>Data:</strong> {{movie.release_date}}</p>
             </div>
         </div>
     </div>
@@ -13,15 +13,15 @@
 <script>
     import axios from "axios"
     export default {
-        name:"Filmes",
+        name:"Movies",
         data(){
             return{
-                filmes:""
+                movies:""
             }
         },
         created: async function(){
             await axios.get("https://swapi.dev/api/films/").then((response)=>{
-                this.filmes = response.data.results
+                this.movies = response.data.results
             })
         }
     }

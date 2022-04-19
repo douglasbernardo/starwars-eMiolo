@@ -10,7 +10,7 @@
       </router-link>
       <div v-if="userId">
         <nav>
-          <router-link :to="{name:'Perfil',params:{id: userId }}">
+          <router-link :to="{name:'Profile',params:{id: userId }}">
             <p>seu perfil</p >
           </router-link>
           <router-link to="/home/usuarios">
@@ -27,7 +27,7 @@
 
 <script>
     export default {
-      name: "Navbar",
+      name: "NavBar",
       props: ["logo", "alt"],
       data(){
         return{

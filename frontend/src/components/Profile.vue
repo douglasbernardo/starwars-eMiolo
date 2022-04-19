@@ -31,7 +31,7 @@
 <script>
  import api from "../services/api"
     export default {
-        name:"Perfil",
+        name:"Profile",
         data(){
             return{
                 user:"",

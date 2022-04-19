@@ -2,15 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Hello from "../components/Hello"
 import Home from "../components/Home"
-import Usuarios from "../components/Usuarios"
-import Perfil from "../components/Perfil"
-import Filmes from "../components/Filmes"
+import Users from "../components/Users"
+import Profile from "../components/Profile"
+import Movies from "../components/Movies"
 
 /* views */
 import LoginForm from "../views/form/LoginForm"
 import SignUpForm from "../views/form/SignUpForm"
-import Personagens from "../views/personagens/Personagens"
-import Sobre from "../views/personagens/Sobre"
+import Characters from "../views/characters/Characters"
+import AboutCharacter from "../views/characters/AboutCharacter"
 
 const routes = [
   {
@@ -47,32 +47,32 @@ const routes = [
   },
   {
     path: '/home/perfil/:id',
-    name: 'Perfil',
-    component: Perfil,
+    name: 'Profile',
+    component: Profile,
     meta:{
       requiresAuth:true
     }
   },
   {
     path:'/home/usuarios',
-    name:"Usuarios",
-    component:Usuarios,
+    name:"Users",
+    component:Users,
     meta:{
       requiresAuth:true
     }
   },
   {
     path:'/home/starwars/filmes',
-    name:"Filmes",
-    component:Filmes,
+    name:"Movies",
+    component:Movies,
     meta:{
       requiresAuth:true
     }
   },
   {
     path:'/home/starwars/personagens',
-    name:"Personagens",
-    component:Personagens,
+    name:"Characters",
+    component:Characters,
     meta:{
       requiresAuth:true
     }
@@ -80,8 +80,8 @@ const routes = [
 
   {
     path:'/home/starwars/personagens/sobre/:id',
-    name:"Sobre",
-    component:Sobre,
+    name:"AboutCharacter",
+    component:AboutCharacter,
     meta:{  
       requiresAuth:true
     }
@@ -101,11 +101,11 @@ const router = createRouter({
 
 
 router.beforeEach((to,from,next)=>{
-  const usuarioAtual = localStorage.getItem("token")
+  const currentUser = localStorage.getItem("token")
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
   if(requiresAuth && !usuarioAtual) next("/login")
-  else if(!requiresAuth && usuarioAtual) next("/home")
+  else if(!requiresAuth && currentUser) next("/home")
   else next()
 })  
 

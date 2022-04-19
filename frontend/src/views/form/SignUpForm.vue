@@ -6,10 +6,10 @@
     <div class="form-container">
       <form @submit.prevent="cadastro" method="post" action="">
         <h1>Faça o Cadastro</h1>
-        <Input type="text" name="nome" v-model="nome" placeholder="Digite o seu nome"/>
+        <Input type="text" name="name" v-model="nome" placeholder="Digite o seu nome"/>
         <Input type="text" name="email" v-model="email" placeholder="Digite o seu e-mail"/>
-        <Input type="password" name="senha" v-model="senha" placeholder="Digite a sua senha"/>
-        <Input type="password" name="confirmacaoSenha" v-model="confirmacaoSenha" placeholder="Confirme a seu senha"/>
+        <Input type="password" name="password" v-model="senha" placeholder="Digite a sua senha"/>
+        <Input type="password" name="confirmPassword" v-model="confirmacaoSenha" placeholder="Confirme a seu senha"/>
         <Button text="cadastre-se"/>
         <p>Já é cadastrado? Faça o <router-link to="/login">login</router-link></p>
       </form>

@@ -7,7 +7,7 @@
       <form @submit.prevent="login" method="post" action="">
         <h1>Faça o Login</h1>
         <Input type="text" name="email" placeholder="Digite o seu e-mail"/>
-        <Input type="password" name="senha" placeholder="Digite a sua senha"/>
+        <Input type="password" name="password" placeholder="Digite a sua senha"/>
         <Button text="Login"/>
         <p>Não é cadastrado? <router-link to="/cadastro">cadastre-se</router-link></p>
       </form>

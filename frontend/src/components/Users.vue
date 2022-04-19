@@ -26,7 +26,7 @@
 <script>
     import api from "../services/api"
     export default {
-        name:"Usuarios",
+        name:"Users",
         data(){
             return {
                 users:""

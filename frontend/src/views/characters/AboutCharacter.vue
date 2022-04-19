@@ -4,30 +4,30 @@
         <table border="4">
             <tr>
                 <th>Nome:</th>
-                <td>{{personagem.name}}</td>
+                <td>{{character.name}}</td>
             </tr>
             <tr>
                 <th>Altura:</th>
-                <td>{{personagem.height}}</td>
+                <td>{{character.height}}</td>
             </tr>
              <tr>
                 <th>Genêro:</th>
-                <td>{{personagem.gender}}</td>
+                <td>{{character.gender}}</td>
             </tr>
             <tr>
                 <th>Cor da Pele:</th>
-                <td>{{personagem.skin_color}}</td>
+                <td>{{character.skin_color}}</td>
             </tr>
             <tr>
                 <th>Ano da Aniversário:</th>
-                <td>{{personagem.birth_year}}</td>
+                <td>{{character.birth_year}}</td>
             </tr>
             <tr>
                 <th>Cor dos olhos:</th>
-                <td>{{personagem.eye_color}}</td>
+                <td>{{character.eye_color}}</td>
             </tr>
         </table>
-        <router-link :to="{name:'Personagens'}">Voltar</router-link>
+        <router-link :to="{name:'Characters'}">Voltar</router-link>
     </div>
 </template>
 
@@ -38,13 +38,13 @@
 
         data() {
             return {
-                personagem:"",
+                character:"",
             }
         },
 
         created: async function(){
             await axios.get(`https://swapi.dev/api/people/${this.$route.params.id}`).then((response)=>{ 
-                this.personagem = response.data
+                this.character = response.data
             })
         }
     }
