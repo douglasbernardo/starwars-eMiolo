@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt")
 const createToken = require("../helpers/token/createToken")
 
 class UserController{
+
     static async signUp(req,res){
       
         const {name,email,password,confirmPassword} = req.body
@@ -50,6 +51,7 @@ class UserController{
     }
 
     static async login(req,res){
+        
         const {email,password} = req.body
 
         if(!email || !password){
@@ -79,6 +81,7 @@ class UserController{
     }
 
     static async loginGoogle(req,res){
+
         const {id,name,email} = req.body
 
         const user = await User.findOne({email:email})
@@ -113,6 +116,7 @@ class UserController{
     }
 
     static async getUsers(req,res){
+
         const data = await User.find()
         res.status(200).json({
             users: data
