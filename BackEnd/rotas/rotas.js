@@ -1,12 +1,12 @@
 
 const router = require("express").Router()
 
-const UsuarioController = require("../controllers/UsuarioController")
+const UserController = require("../controllers/UserController")
 
-router.post("/cadastro",UsuarioController.cadastro)
-router.post("/login",UsuarioController.login)
-router.post("/googleLogin",UsuarioController.loginGoogle)
-router.get("/perfil/:id",UsuarioController.perfil)
-router.get("/usuariosAll",UsuarioController.getUsuarios)
+router.post("/cadastro",UserController.signUp)
+router.post("/login",UserController.login)
+router.post("/googleLogin",UserController.loginGoogle)
+router.get("/perfil/:id",UserController.myProfile)
+router.get("/usuariosAll",UserController.getUsers)
 
 module.exports = router

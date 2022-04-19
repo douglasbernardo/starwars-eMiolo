@@ -1,8 +1,8 @@
 
 const mongoose = require("mongoose")
 
-const Usuario = mongoose.model(
-    "Usuario",
+const User = mongoose.model(
+    "User",
     new mongoose.Schema({
         id_google:{type:String,required:false},
         nome:{type:String,required:true},
@@ -13,4 +13,4 @@ const Usuario = mongoose.model(
     )
 )
 
-module.exports = Usuario
+module.exports = User

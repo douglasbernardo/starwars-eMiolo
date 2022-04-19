@@ -1,29 +1,28 @@
 
-const Usuario = require("../models/Usuario")
+const User = require("../models/User")
 const bcrypt = require("bcrypt")
 const createToken = require("../helpers/token/createToken")
-const getToken = require("../helpers/token/getToken")
 
-class UsuarioController{
-    static async cadastro(req,res){
+class UserController{
+    static async signUp(req,res){
       
-        const {nome,email,senha,confirmacaoSenha} = req.body
+        const {name,email,password,confirmPassword} = req.body
 
-        if(!nome || !email || !senha || !confirmacaoSenha){
+        if(!name || !email || !password || !confirmPassword){
             res.status(422).json({
                 message:"Os dados devem ser preenchidos"
             })
             return
         }
 
-        if(await Usuario.findOne({email})){
+        if(await User.findOne({email})){
             res.status(422).json({
                 message:"E-mail já existente"
             })
             return
         }       
 
-        if(senha !== confirmacaoSenha){
+        if(password !== confirmPassword){
             res.status(422).json({
                 message:"As senhas não conferem,tente novamente"
             })
@@ -31,10 +30,10 @@ class UsuarioController{
         }
 
         const genSalt = bcrypt.genSaltSync(10)
-        const hashPass = bcrypt.hashSync(senha,genSalt)
+        const hashPass = bcrypt.hashSync(password,genSalt)
 
-        const userObject = new Usuario({
-            nome:nome,
+        const userObject = new User({
+            nome:name,
             email:email,
             senha:hashPass,
         })
@@ -51,49 +50,49 @@ class UsuarioController{
     }
 
     static async login(req,res){
-        const {email,senha} = req.body
+        const {email,password} = req.body
 
-        if(!email || !senha){
+        if(!email || !password){
             res.status(422).json({
                 message:"Os dados devem ser preenchidos"
             })
             return
         }
 
-        const usuario = await Usuario.findOne({email:email})
+        const user = await User.findOne({email:email})
 
-        if(!usuario){
+        if(!user){
             res.status(422).json({
                 message:"Não há usuário com este e-mail!"
             })
             return
         }
 
-        if(!await bcrypt.compare(senha,usuario.senha)) {
+        if(!await bcrypt.compare(password,user.senha)) {
             res.status(422).json({
                 message:"As senhas não conferem!"
             })
             return
         }  
        
-        createToken(usuario,req,res)
+        createToken(user,req,res)
     }
 
     static async loginGoogle(req,res){
-        const {id,nome,email} = req.body
+        const {id,name,email} = req.body
 
-        const usuario = await Usuario.findOne({email:email})
+        const user = await User.findOne({email:email})
 
-        if(!usuario){
+        if(!user){
 
-            const objUsuario = new Usuario({
+            const userObject = new User({
                 id_google:id,
-                nome:nome,
+                nome:name,
                 email:email
             })
 
             try{
-                const data = await objUsuario.save()
+                const data = await userObject.save()
                 createToken(data,req,res)
             }
             catch(e){
@@ -103,18 +102,18 @@ class UsuarioController{
         createToken(usuario,req,res)
     }
 
-    static async perfil(req,res){
+    static async myProfile(req,res){
         
         const id = req.params.id
 
-        const user = await Usuario.findOne({_id:id}).lean()
+        const user = await User.findOne({_id:id}).lean()
         res.status(200).json({
             user: user
         })
     }
 
-    static async getUsuarios(req,res){
-        const data = await Usuario.find()
+    static async getUsers(req,res){
+        const data = await User.find()
         res.status(200).json({
             users: data
         })
@@ -122,4 +121,4 @@ class UsuarioController{
 }
 
 
-module.exports = UsuarioController
+module.exports = UserController
