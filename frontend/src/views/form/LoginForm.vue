@@ -45,11 +45,11 @@
     methods: {
       async login(event){
         try{
-          const userObj = {
+          const userObject = {
             email: event.target.email.value,
-            senha: event.target.senha.value,
+            password: event.target.password.value,
           }
-          await api.post('/login', userObj)
+          await api.post('/login', userObject)
             .then((response) => {
               console.log("Logado com sucesso",response.data)
               localStorage.setItem("userId",response.data.userId)
@@ -70,18 +70,18 @@
         try{
           const googleUser = await this.$gAuth.signIn()
           const profile = googleUser.getBasicProfile()
-          const userGoogleObj = {
+          const userGoogleObject = {
             id:profile.getId(),
-            nome:profile.getName(),
+            name:profile.getName(),
             email:profile.getEmail()
           }
 
-          await api.post('/googleLogin',userGoogleObj)
+          await api.post('/googleLogin',userGoogleObject)
             .then((response)=>{
               console.log("Logado com sucesso",response.data)
               localStorage.setItem("userId",response.data.userId)
               localStorage.setItem("token",response.data.token)
-              localStorage.setItem("googleId",userGoogleObj.id)
+              localStorage.setItem("googleId",userGoogleObject.id)
               this.$router.push({ name: 'Home'})
           })
         }

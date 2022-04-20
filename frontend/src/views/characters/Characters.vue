@@ -8,12 +8,12 @@
                     <th>Mais Sobre</th>
                 </tr>
                 <tr 
-                    v-for="(personagem, index) in personagens" 
-                    :key="index">
+                    v-for="character in characters" 
+                    :key="character.id">
                     <td>
-                        {{personagem.name}}
+                        {{character.name}}
                     </td>
-                    <router-link :to="{name:'Sobre',params:{id:personagem.url.slice(29,-1)}}">Mais</router-link>
+                    <router-link :to="{name:'AboutCharacters',params:{id:character.url.slice(29,-1)}}">Mais</router-link>
                 </tr>
             </table>
         </div>
@@ -26,15 +26,15 @@
 <script>
     import axios from "axios"
     export default {
-      name:"Personagens" ,
+      name:"Characters" ,
       data() {
         return{
-            personagens:"",
+            characters:"",
         }
       },
       created: async function () {
         await axios.get("https://swapi.dev/api/people/").then((response)=>{
-            this.personagens = response.data.results
+            this.characters = response.data.results
         })
       },
     

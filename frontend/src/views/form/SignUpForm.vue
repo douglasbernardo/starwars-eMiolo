@@ -33,24 +33,21 @@
       Input,
       Button,
     },
-    created(){
-      this.cadastro()
-    },
     methods: {
-      async cadastro(event){
+      async signUp(event){
 
         const userObject = {
-          nome: event.target.nome.value,
+          name: event.target.name.value,
           email: event.target.email.value,
-          senha: event.target.senha.value,
-          confirmacaoSenha: event.target.confirmacaoSenha.value
+          password: event.target.password.value,
+          confirmPassword: event.target.confirmPassword.value
         }
 
         try{
             await api.post('/cadastro', userObject).then((response) => {
               console.log("Cadastrado com sucesso",response.data)
               localStorage.setItem("token",response.data.token)
-              this.$router.push({ name: 'Home'})
+              this.$router.push({ name: 'LoginForm'})
             })
         }catch(e){
            this.message = e.response.data.message
@@ -60,6 +57,9 @@
           console.log("erro ao tentar cadastrar:"+e)
         }
 
+      },
+      created(){
+        this.signUp()
       },
     },
   }
