@@ -51,7 +51,7 @@ class UserController{
     }
 
     static async login(req,res){
-        
+
         const {email,password} = req.body
 
         if(!email || !password){
@@ -102,7 +102,7 @@ class UserController{
                 console.log("Erro ao cadastradar",e)
             }
         }
-        createToken(usuario,req,res)
+        createToken(user,req,res)
     }
 
     static async myProfile(req,res){
@@ -123,6 +123,7 @@ class UserController{
         })
     }
 }
+
 
 
 module.exports = UserController
