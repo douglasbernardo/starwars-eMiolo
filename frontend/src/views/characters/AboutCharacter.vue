@@ -34,7 +34,7 @@
 <script>
     import axios from "axios"
     export default {
-        name:"Sobre",
+        name:"AboutCharacter",
 
         data() {
             return {
