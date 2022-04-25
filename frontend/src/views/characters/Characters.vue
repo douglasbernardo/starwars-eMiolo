@@ -2,12 +2,13 @@
     <div>
         <div>
             <h2>Lista de Personagens</h2>
-            <table>
+            {{characters}}
+            <table v-if="characters > 0">
                 <tr>
                     <th>Nome dos Personagens:</th>
                     <th>Mais Sobre</th>
                 </tr>
-                <tr 
+                <tr
                     v-for="character in characters" 
                     :key="character.id">
                     <td>
@@ -16,8 +17,9 @@
                     <router-link :to="{name:'AboutCharacters',params:{id:character.url.slice(29,-1)}}">Mais</router-link>
                 </tr>
             </table>
+            <p v-else> A lista de Personagens não foi liberada</p>
         </div>
-        <router-link to="/home">
+        <router-link :to="{name:'Home'}">
             <p>Voltar</p>
         </router-link>
     </div>
