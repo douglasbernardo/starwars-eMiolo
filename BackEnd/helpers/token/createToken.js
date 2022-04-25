@@ -5,7 +5,7 @@ require("dotenv").config()
 const createToken = async(user,req,res)=>{
     const token = jwt.sign(
         {
-            name:user.nome,
+            name:user.name,
             id:user._id
         },
         process.env.TOKEN_SECRET
