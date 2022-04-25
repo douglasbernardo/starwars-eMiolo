@@ -19,7 +19,7 @@ app.get("/",(req,res)=>{
     res.send("Hello world")
 })
 
-const userRoutes = require("./rotas/rotas")
+const userRoutes = require("./routes_api/routes")
 app.use("/usuario",userRoutes)
 
 app.listen(2000)
